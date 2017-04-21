@@ -8,7 +8,7 @@ import (
 	"strconv"
 	"time"
 	mqtt "github.com/eclipse/paho.mqtt.golang"
-	"github.com/wattx-task/models"
+	"github.com/golang-task/models"
 	"os"
 	"encoding/json"
 
@@ -115,12 +115,12 @@ func Subscribe(broker *models.BrokerSub, client mqtt.Client) error {
 func GenPeriodicTemp(d time.Duration, c mqtt.Client) error {
 
 	rand.Seed(time.Now().UTC().UnixNano())
-	ticker := time.NewTicker(time.Second * 5)
+	ticker := time.NewTicker(d)
 
 	go func() {
 		for x := range ticker.C{
 
-			reqRandTemp := GetRandomfloat(18.0, 25.0)
+			reqRandTemp := GetRandomfloat()
 			randomInt := GetRandomInt(0, 10)
 			randomIntString := fmt.Sprintf("%d", randomInt)
 			sensorID := "sensorID" + "-" + randomIntString
@@ -169,7 +169,7 @@ func GetRandomInt(min int, max int) int {
 
 
 // Generates random float
-func GetRandomfloat(mint float64, max float64) float64 {
+func GetRandomfloat() float64 {
 
 	num := (rand.Float64() * 30) + 7
 	reqNum := fmt.Sprintf("%.2f", num)

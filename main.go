@@ -4,9 +4,9 @@ import (
 	"os"
 	"time"
 	"github.com/eclipse/paho.mqtt.golang"
-	"github.com/wattx-task/config"
-	"github.com/wattx-task/helper"
-	"github.com/wattx-task/models"
+	"github.com/golang-task/config"
+	"github.com/golang-task/helper"
+	"github.com/golang-task/models"
 	"log"
 	"flag"
 
